@@ -1,0 +1,22 @@
+{
+  "name": "subastasat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/script.js",
+  "scripts": {
+    "dev": "npm run build && nodemon ./dist/server.js",
+    "build": "tsc",
+    "tslint": "tslint -p tsconfig.json",
+    "start": "node ."
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "tslint": "^6.1.3",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@types/puppeteer": "^7.0.4",
+    "puppeteer": "^19.4.1"
+  }
+}
