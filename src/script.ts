@@ -26,22 +26,25 @@ const run = async () => {
     await page.goto('https://www.sat.gob.mx/personas/iniciar-sesion');
 
     const frame = page.frames()[1];
-    await frame.waitForSelector('#buttonFiel');
 
-    let button = await frame.$('#buttonFiel');
+    let button = await frame.waitForSelector('#buttonFiel');
     button.click();
 
-    await frame.waitForSelector('#fileCertificate');
-    const certInput = await frame.$('#fileCertificate') as ElementHandle<HTMLInputElement>;
+    const certInput = await frame.waitForSelector('#fileCertificate') as ElementHandle<HTMLInputElement>;
     await certInput.uploadFile(certFile);
 
     const keyInput = await frame.$('#filePrivateKey') as ElementHandle<HTMLInputElement>;
     await keyInput.uploadFile(keyFile);
 
-    const passwordInput = await frame.waitForSelector('#privateKeyPassword');
+    const passwordInput = await frame.$('#privateKeyPassword');
     await passwordInput.type(password);
-
     await frame.click('#submit');
+
+    button = await page.waitForSelector('#campo-busqueda a');
+    button.click();
+
+    button = await page.waitForSelector('.ui-dialog-buttonset button:nth-child(2)');
+    button.click();
 }
 
 run();
